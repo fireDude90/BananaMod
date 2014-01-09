@@ -17,7 +17,7 @@ public class BananaMod {
     public static final BananaItem bananaItem = new BananaItem(5000);
     // Init
     public static final String modID = "BananaMod";
-    @Instance(value = "BananaModID")
+    @Instance(value = "BananaMod")
     public static BananaMod instance;
 
     @SidedProxy(clientSide = "com.joetheperson.bananamod.client.ClientProxy", serverSide = "com.joetheperson.bananamod.CommonProxy")
