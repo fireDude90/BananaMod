@@ -15,6 +15,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.WorldProvider;
+import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.common.DimensionManager;
 
 @Mod(modid = BananaMod.modID, name = "BananaMod", version = "1.0.0")
@@ -24,15 +25,18 @@ public class BananaMod {
     public static final ItemBanana itemBanana = new ItemBanana(5000, 1, 5.0f);
 
     // Block
-    public static final Block blockBanana = new BlockBasic(500, Material.ground)
+    public static final Block blockBanana = new BlockBasic(200, Material.cloth)
             .setHardness(0.5f)
             .setCreativeTab(CreativeTabs.tabBlock)
             .setUnlocalizedName("blockBanana")
             .setTextureName(BananaMod.modID + ":blockBanana");
-    public static final BlockPortalBanana blockPortalBanana = new BlockPortalBanana(501);
+    public static final BlockPortalBanana blockPortalBanana = new BlockPortalBanana(201);
 
     // Dimension
     public static final int bananaDimensionID = 6;
+
+    // Biome
+    public static final BiomeGenBase biomeGenBanana = new BiomeGenBanana(25);
 
     // Init
     public static final String modID = "BananaMod";
