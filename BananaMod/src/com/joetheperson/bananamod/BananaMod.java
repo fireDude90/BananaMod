@@ -14,9 +14,9 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
-import net.minecraft.world.WorldProvider;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.common.DimensionManager;
+import net.minecraftforge.common.MinecraftForge;
 
 @Mod(modid = BananaMod.modID, name = "BananaMod", version = "1.0.0")
 @NetworkMod(clientSideRequired = true)
@@ -25,12 +25,12 @@ public class BananaMod {
     public static final ItemBanana itemBanana = new ItemBanana(5000, 1, 5.0f);
 
     // Block
-    public static final Block blockBanana = new BlockBasic(200, Material.cloth)
-            .setHardness(0.5f)
-            .setCreativeTab(CreativeTabs.tabBlock)
-            .setUnlocalizedName("blockBanana")
-            .setTextureName(BananaMod.modID + ":blockBanana");
+    public static final Block blockBanana = new BlockBanana(200);
     public static final BlockPortalBanana blockPortalBanana = new BlockPortalBanana(201);
+
+    // Blocks - Banana Tree
+    public static final BlockBananaTreeLog blockBananaTreeLog = new BlockBananaTreeLog(202);
+    public static final BlockBananaTreeLeaf blockBananaTreeLeaf = new BlockBananaTreeLeaf(203);
 
     // Dimension
     public static final int bananaDimensionID = 6;
@@ -55,6 +55,8 @@ public class BananaMod {
     public void load(FMLInitializationEvent event) {
         proxy.registerRenderers();
 
+        // Tools Registration
+        MinecraftForge.setBlockHarvestLevel(blockBanana, "shovel", 1); // stone shovel and above
         // Recipes
         ItemStack bananas = new ItemStack(itemBanana);
         GameRegistry.addShapelessRecipe(new ItemStack(blockBanana),
@@ -66,12 +68,20 @@ public class BananaMod {
         GameRegistry.registerBlock(blockBanana, BananaMod.modID + blockBanana.getUnlocalizedName().substring(5));
         GameRegistry.registerBlock(blockPortalBanana, BananaMod.modID + blockPortalBanana.getUnlocalizedName().substring(5));
 
+        // Game Registry - Tree
+        GameRegistry.registerBlock(blockBananaTreeLog, BananaMod.modID + blockBananaTreeLog.getUnlocalizedName().substring(5));
+        GameRegistry.registerBlock(blockBananaTreeLeaf, BananaMod.modID + blockBananaTreeLeaf.getUnlocalizedName().substring(5));
+
         // Language Registry - Item
         LanguageRegistry.addName(itemBanana, "Banana");
 
         // Language Registry - Block
         LanguageRegistry.addName(blockBanana, "Banana Block");
         LanguageRegistry.addName(blockPortalBanana, "Banana Portal Block");
+
+        // Language Registry - Tree
+        LanguageRegistry.addName(blockBananaTreeLog, "Banana Tree Log");
+        LanguageRegistry.addName(blockBananaTreeLeaf, "Banana Tree Leaf");
 
         // Dimension
         DimensionManager.registerProviderType(BananaMod.bananaDimensionID, WorldProviderBanana.class, false);

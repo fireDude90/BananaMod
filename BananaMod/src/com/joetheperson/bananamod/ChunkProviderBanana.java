@@ -262,7 +262,7 @@ public class ChunkProviderBanana implements IChunkProvider {
                 for (int k1 = 127; k1 >= 0; --k1) {
                     int l1 = (l * 16 + k) * 128 + k1;
 
-                    if (k1 <= 0 + this.rand.nextInt(5)) {
+                    if (k1 <= this.rand.nextInt(5)) { // TODO: old 0 + this.rand..nextInt()
                         par3ArrayOfByte[l1] = (byte) Block.bedrock.blockID;
                     } else {
                         byte b3 = par3ArrayOfByte[l1];
